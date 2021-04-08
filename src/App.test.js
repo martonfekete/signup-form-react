@@ -1,8 +1,16 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+describe('App', () => {
+  test('displays welcome text', () => {
+    render(<App />);
+    const title = screen.getByText(/welcome/i);
+    expect(title).toBeInTheDocument();
+  })
+
+  test('displays form', () => {
+    render(<App />);
+    const form = document.querySelector('form');
+    expect(form).toBeDefined();
+  })
+})
