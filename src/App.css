@@ -13,3 +13,7 @@
 .form-control {
   padding: 0.75rem;
 }
+.invalid-feedback {
+  font-size: 0.8rem;
+  text-align: right;
+}

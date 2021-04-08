@@ -19,7 +19,8 @@ export const SIGNUP_FORM_INIT_STATE = {
       validators: {
         [VALIDATORS.required]: true
       },
-      valid: false
+      valid: false,
+      error: ''
     }, [SIGNUP_FIELD_KEYS.lastName]: {
       label: 'Last Name',
       placeholder: 'Doe',
@@ -27,7 +28,8 @@ export const SIGNUP_FORM_INIT_STATE = {
       validators: {
         [VALIDATORS.required]: true
       },
-      valid: false
+      valid: false,
+      error: ''
     }, [SIGNUP_FIELD_KEYS.email]: {
       label: 'Email',
       placeholder: 'janedoe@email.com',
@@ -36,7 +38,8 @@ export const SIGNUP_FORM_INIT_STATE = {
         [VALIDATORS.required]: true,
         [VALIDATORS.pattern]: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/gm
       },
-      valid: false
+      valid: false,
+      error: ''
     }, [SIGNUP_FIELD_KEYS.password]: {
       label: 'Password',
       placeholder: 'Password (min. 8 characters with lower- and uppercase letters)',
@@ -45,7 +48,8 @@ export const SIGNUP_FORM_INIT_STATE = {
         [VALIDATORS.required]: true,
         [VALIDATORS.pattern]: /^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d]{8,}$/gm
       },
-      valid: false
+      valid: false,
+      error: ''
     }
   }
 };

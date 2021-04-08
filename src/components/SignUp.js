@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import InputField from './InputField';
 import { SIGNUP_FIELD_KEYS, SIGNUP_FORM_INIT_STATE } from '../constants/forms';
-import { validateInputField } from '../utils/validators';
+import { updateFormFieldsValidity } from '../utils/validators';
 
 export default function SignUp(props) {
   const formKeys = Object.keys(SIGNUP_FIELD_KEYS);
@@ -11,15 +11,11 @@ export default function SignUp(props) {
     [SIGNUP_FIELD_KEYS.password]: '',
     [SIGNUP_FIELD_KEYS.email]: ''
   });
+
   const [form, setForm] = useState(SIGNUP_FORM_INIT_STATE);
   useEffect(() => {
     const updatedForm = Object.assign({}, form);
-    Object.keys(updatedForm.controls).forEach(key => {
-      const formControlEntry = Object.assign({}, form.controls[key], {
-        valid: validateInputField(formValues[key], form.controls[key].validators)
-      });
-      updatedForm.controls[key] = formControlEntry;
-    });
+    updateFormFieldsValidity(updatedForm.controls, formValues);
     setForm(updatedForm);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formValues.firstName, formValues.lastName, formValues.email, formValues.password])
@@ -46,15 +42,17 @@ export default function SignUp(props) {
     <div className="container">
       <form onSubmit={submitForm}>
         {formKeys.map((key, i) => {
+          const formControl = form.controls[key];
           return (
             <InputField
               key={key}
               id={key}
               value={formValues[key]}
-              label={form.controls[key].label}
-              type={form.controls[key].type}
-              valid={form.controls[key].valid}
-              placeholder={form.controls[key].placeholder}
+              label={formControl.label}
+              type={formControl.type}
+              valid={formControl.valid}
+              placeholder={formControl.placeholder}
+              error={formControl.error}
               onChange={updateFormValue} />
           );
         })}

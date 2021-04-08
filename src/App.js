@@ -7,6 +7,8 @@ import ApiStatusDisplay from './components/ApiStatusDisplay';
 
 function App() {
   const [postStatus, setPostStatus] = useState('');
+  const [getStatus, setGetStatus] = useState('');
+
   async function handleOnSubmit(values) {
     setGetStatus(USERS_API_RESULTS.postInPorgress);
     const postResponse = await createUser(values)
@@ -21,7 +23,6 @@ function App() {
     }
   }
 
-  const [getStatus, setGetStatus] = useState('');
   async function getUsersWithDelay(delayInMs = 4000) {
     setGetStatus(`Waiting ${delayInMs / 1000} seconds`);
     setTimeout(() => {

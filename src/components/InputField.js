@@ -18,7 +18,7 @@ export default function InputField(props) {
   }, [props.valid])
 
   return (
-    <div className="mb-3">
+    <div className="mb-3 position-relative">
       <label className="form-label" htmlFor={props.id}>{props.label}</label>
       <input className={`form-control ${!pristine ? validationClass : ''}`}
         type={props.type}
@@ -26,6 +26,7 @@ export default function InputField(props) {
         value={props.value}
         placeholder={props.placeholder}
         onChange={handleChange} />
+      {(!!props.error && !pristine) && (<div className="invalid-feedback position-absolute">{props.error}</div>)}
     </div>
   );
 };
